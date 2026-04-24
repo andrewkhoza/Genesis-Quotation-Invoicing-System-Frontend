@@ -4,10 +4,13 @@
 
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg?logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF.svg?logo=vite)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E.svg?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](LICENSE.md)
+[![Status](https://img.shields.io/badge/Status-Live%20%26%20Active-brightgreen.svg)]()
 
 The React/Vite frontend for the Genesis Quotation & Invoicing platform. A multi-tenant SPA that consumes the [Genesis API](../api/README.md) — providing role-scoped dashboards for Owners, Admins, and Staff to manage quotes, invoices, credit notes, customers, and products.
+
+> **This repository contains the README only.** The source code is proprietary and actively running in production. Interested parties are welcome to [get in touch](#contact--demos) for a live walkthrough or code demo.
 
 </div>
 
@@ -28,6 +31,7 @@ The React/Vite frontend for the Genesis Quotation & Invoicing platform. A multi-
 - [Available Scripts](#available-scripts)
 - [Deployment](#deployment)
 - [License](#license)
+- [Contact & Demos](#contact--demos)
 
 ---
 
@@ -48,18 +52,16 @@ The app handles two distinct access patterns:
 |---|---|
 | Framework | React 18 |
 | Build Tool | Vite 5 |
-| Language | TypeScript 5 |
+| Language | JavaScript (ES2022) |
 | Routing | React Router v6 |
 | State Management | Zustand |
 | HTTP Client | Axios |
 | UI Components | shadcn/ui + Tailwind CSS |
 | Form Handling | React Hook Form + Zod |
-| PDF Preview | React PDF / iframe embed |
+| PDF Preview | iframe embed |
 | Notifications | Sonner (toast) |
 | Icons | Lucide React |
 | Date Handling | Day.js |
-
-> **Note:** Update this table to match your actual dependencies if they differ.
 
 ---
 
@@ -69,10 +71,10 @@ The app handles two distinct access patterns:
 ├── public/                   # Static assets
 ├── src/
 │   ├── api/                  # Axios instance, interceptors, endpoint functions
-│   │   ├── client.ts         # Base Axios config + JWT interceptor
-│   │   ├── auth.ts
-│   │   ├── quotes.ts
-│   │   ├── invoices.ts
+│   │   ├── client.js         # Base Axios config + JWT interceptor
+│   │   ├── auth.js
+│   │   ├── quotes.js
+│   │   ├── invoices.js
 │   │   └── ...
 │   ├── components/           # Shared UI components
 │   │   ├── ui/               # shadcn/ui primitives
@@ -91,20 +93,18 @@ The app handles two distinct access patterns:
 │   │   └── public/           # Unauthenticated document views
 │   ├── hooks/                # Custom React hooks
 │   ├── stores/               # Zustand state stores (auth, tenant)
-│   ├── types/                # TypeScript interfaces and enums
 │   ├── utils/                # Formatters, helpers, constants
 │   ├── router/               # Route definitions and guards
-│   │   ├── index.tsx
-│   │   ├── ProtectedRoute.tsx
-│   │   ├── RoleRoute.tsx
-│   │   └── GuestRoute.tsx
-│   ├── App.tsx
-│   └── main.tsx
+│   │   ├── index.jsx
+│   │   ├── ProtectedRoute.jsx
+│   │   ├── RoleRoute.jsx
+│   │   └── GuestRoute.jsx
+│   ├── App.jsx
+│   └── main.jsx
 ├── .env.example
 ├── index.html
-├── tailwind.config.ts
-├── tsconfig.json
-└── vite.config.ts
+├── tailwind.config.js
+└── vite.config.js
 ```
 
 ---
@@ -209,7 +209,7 @@ The app handles two distinct access patterns:
 <details>
 <summary><strong>Settings & Templates</strong></summary>
 
-- Tenant branding — company name, logo upload
+- Tenant branding — company name and logo upload
 - Email template editor with live placeholder preview (`{{client_name}}`, `{{quote_total}}`, etc.)
 - Document sequence configuration
 
@@ -228,15 +228,15 @@ The app handles two distinct access patterns:
 
 ## API Integration
 
-All API calls are made through a centralised Axios instance at `src/api/client.ts`. It handles:
+All API calls go through a centralised Axios instance at `src/api/client.js`. It handles:
 
-- Base URL from environment variable
-- JWT `Authorization: Bearer <token>` header injection on every request
-- Automatic token refresh on `401` responses via a request queue + interceptor
+- Base URL injected from environment variable
+- JWT `Authorization: Bearer <token>` header on every request
+- Automatic token refresh on `401` responses via a request queue and interceptor
 - Redirect to `/login` on refresh failure
 
-```typescript
-// src/api/client.ts (simplified)
+```javascript
+// src/api/client.js (simplified)
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
 });
@@ -259,7 +259,7 @@ User submits login form
 POST /auth/login
         │
         ▼
-Store accessToken (memory) + refreshToken (httpOnly cookie or localStorage)
+Store accessToken (memory) + refreshToken (localStorage)
         │
         ▼
 Bootstrap user profile + tenant → populate Zustand auth store
@@ -341,7 +341,6 @@ The app will be available at `http://localhost:5173`.
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint |
-| `npm run type-check` | Run TypeScript compiler check (no emit) |
 
 ---
 
@@ -353,7 +352,6 @@ The app builds to a static `dist/` folder and can be deployed to any static host
 
 - **Vercel** — zero-config, connects to GitHub, automatic preview deployments
 - **Cloudflare Pages** — fast global CDN, generous free tier
-- **Azure Static Web Apps** — if you're within an Azure environment
 
 ### SPA routing
 
@@ -379,3 +377,20 @@ For Vercel or Cloudflare Pages this is handled automatically.
 ## License
 
 Licensed under the **BSD-3-Clause License**. See [LICENSE.md](LICENSE.md) for details.
+
+---
+
+## Contact & Demos
+
+This repository is intentionally published as a README-only showcase — the full source code is proprietary and actively running in production.
+
+If you're interested in any of the following, feel free to reach out:
+
+- **Live demo or walkthrough** — a full presentation of the platform's features and workflows
+- **Code review** — a private demo of the codebase for vetting or evaluation purposes
+- **Similar build** — commissioning a comparable system for your business
+
+📧 **[info@genesisdigital.co.za](mailto:info@genesisdigital.co.za)**
+🌐 **[genesisdigital.co.za](https://genesisdigital.co.za)**
+
+> Built by [Genesis Digital Solutions](https://genesisdigital.co.za)
