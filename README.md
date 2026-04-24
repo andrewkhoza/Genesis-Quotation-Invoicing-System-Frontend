@@ -10,7 +10,7 @@
 
 The React/Vite frontend for the Genesis Quotation & Invoicing platform. A multi-tenant SPA that consumes the [Genesis API](../api/README.md) — providing role-scoped dashboards for Owners, Admins, and Staff to manage quotes, invoices, credit notes, customers, and products.
 
-> **This repository contains the README only.** The source code is proprietary and actively running in production. Interested parties are welcome to [get in touch](#contact--demos) for a live walkthrough or code demo.
+> **This repository contains the README only.** The source code is proprietary. Interested parties are welcome to [get in touch](#contact--demos) for a live walkthrough or code demo.
 
 </div>
 
@@ -390,7 +390,7 @@ If you're interested in any of the following, feel free to reach out:
 - **Code review** — a private demo of the codebase for vetting or evaluation purposes
 - **Similar build** — commissioning a comparable system for your business
 
-📧 **[info@genesisdigital.co.za](mailto:info@genesisdigital.co.za)**
+📧 **[andrew@genesisdigital.co.za](mailto:andrew@genesisdigital.co.za)**
 🌐 **[genesisdigital.co.za](https://genesisdigital.co.za)**
 
 > Built by [Genesis Digital Solutions](https://genesisdigital.co.za)
